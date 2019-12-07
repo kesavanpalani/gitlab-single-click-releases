@@ -13,8 +13,9 @@ class YamlParserServiceTest extends FunSuite  with BeforeAndAfter {
     yamlParserService = new YamlParserService
   }
   test("should able to generate the gitlab pipeline params object for valid yaml string"){
-    var sampleYamlString = "groupName : Avengers\nprojectName : endgame\nrunFor : master"
-    var gitlabPipelineParameters: GitlabPipelineParameters = new GitlabPipelineParameters("Avengers", "endgame", "master")
+    var sampleYamlString = "id: task-1\ngroupName: Avengers\nprojectName: endgame\nrunFor: master"
+    var gitlabPipelineParameters: GitlabPipelineParameters = new GitlabPipelineParameters("task-1","Avengers", "endgame", "master")
+
     assertResult(gitlabPipelineParameters) {
       yamlParserService.convertYAMLToObject(sampleYamlString)
     }
@@ -28,8 +29,8 @@ class YamlParserServiceTest extends FunSuite  with BeforeAndAfter {
   }
 
   test("should able to generate the gitlab pipeline params object for valid yaml string which contains the map of input variables") {
-    var sampleYamlString = "groupName: Avengers\nprojectName: endgame\nrunFor: master\ninputVariables:\n DB_PASSWORD: 1234\n DB_USER_NAME: k7"
-    var gitlabPipelineParameters: GitlabPipelineParameters = new GitlabPipelineParameters("Avengers", "endgame", "master", Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
+    var sampleYamlString = "id: task-1\ngroupName: Avengers\nprojectName: endgame\nrunFor: master\ninputVariables:\n  DB_PASSWORD: 1234\n  DB_USER_NAME: k7"
+    var gitlabPipelineParameters: GitlabPipelineParameters = new GitlabPipelineParameters("task-1","Avengers", "endgame", "master", Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
 
     assertResult(gitlabPipelineParameters) {
       yamlParserService.convertYAMLToObject(sampleYamlString)
