@@ -15,4 +15,5 @@ class YamlParserService {
     mapper.registerModule(DefaultScalaModule)
     mapper.readValue(string, classOf[GitlabPipelineParameters])
   }
+
 }
