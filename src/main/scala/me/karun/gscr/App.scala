@@ -1,6 +1,6 @@
 package me.karun.gscr
 
-import me.karun.gscr.models.{GitlabPipelineParameters, TaskDescriptor}
+import me.karun.gscr.models.TaskDescriptor
 import me.karun.gscr.services.{FileService, YamlParserService}
 
 object App {
