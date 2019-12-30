@@ -1,0 +1,38 @@
+tasks:
+  -
+    id: task-1
+    groupName: marvel
+    projectName: endgame
+    runFor: master
+
+  -
+    id: task-2
+    groupName: marvel
+    projectName: infinity war
+    runFor: master
+    inputVariable:
+      DB_PASSWORD: 1234
+      DB_USER_NAME: k7
+
+  -
+    id: task-3
+    groupName: DC
+    projectName: justice league
+    runFor: master
+    inputVariable:
+      DB_PASSWORD: 1234
+      DB_USER_NAME: k7
+
+  -
+    id: task-4
+    groupName: marvel
+    projectName: age of ultron
+    runFor: master
+    inputVariable:
+      DB_PASSWORD: 1234
+      DB_USER_NAME: k7
+
+orderToExecute:
+  - task-1
+  - task-2, task-3
+  - task-4
