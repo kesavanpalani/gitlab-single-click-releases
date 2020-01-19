@@ -10,6 +10,6 @@ object App {
 
     val yamplParserService : YamlParserService = new YamlParserService
     val taskDescriptor: TaskDescriptor =  yamplParserService.convertYAMLToObject(input)
-    taskDescriptor.print()
+    taskDescriptor.print(taskDescriptor.orderToExecute)
   }
 }

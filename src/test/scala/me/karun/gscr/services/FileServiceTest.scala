@@ -12,7 +12,7 @@ class FileServiceTest extends FunSuite with BeforeAndAfter {
     val sampleYamlString = Helper.getSampleYamlString
 
     assertResult(sampleYamlString) {
-      fileService.read(Path.of(ClassLoader.getSystemResource("sample.yml").toURI).toString)
+      fileService.read(getClass.getResource("/sample.yml").getPath)
     }
   }
 }
