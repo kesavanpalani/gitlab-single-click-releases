@@ -1,0 +1,36 @@
+{
+  "id": 899999,
+  "sha": "774127499522efc8c2c353bce9cd246dc8dbc39c",
+  "ref": "master",
+  "status": "pending",
+  "created_at": "2019-10-19T06:22:44.627Z",
+  "updated_at": "2019-10-19T06:22:44.958Z",
+  "web_url": "https://gitlab.com/gxpp/project-1/pipelines/899999",
+  "before_sha": "0000000000000000000000000000000000000000",
+  "tag": false,
+  "yaml_errors": null,
+  "user": {
+    "id": 334455,
+    "name": "test user",
+    "username": "test.user",
+    "state": "active",
+    "avatar_url": "https://assets.gitlab-static.net/uploads/-/system/user/avatar/334455/avatar.png",
+    "web_url": "https://gitlab.com/test.user"
+  },
+  "started_at": null,
+  "finished_at": null,
+  "committed_at": null,
+  "duration": null,
+  "coverage": null,
+  "detailed_status": {
+    "icon": "status_pending",
+    "text": "pending",
+    "label": "pending",
+    "group": "pending",
+    "tooltip": "pending",
+    "has_details": false,
+    "details_path": "/gxpp/project-1/pipelines/899999",
+    "illustration": null,
+    "favicon": "https://gitlab.com/assets/ci_favicons/favicon_status_pending-5bdf338420e5221ca24353b6bff1c9367189588750632e9a871b7af09ff6a2ae.png"
+  }
+}
