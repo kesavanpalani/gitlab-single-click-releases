@@ -1,29 +1,49 @@
 package me.karun.gscr.models
 
 import java.util.NoSuchElementException
+import scala.collection.mutable.ListBuffer
 
-case class TaskDescriptor(tasks: List[GitlabPipelineParameters], orderToExecute: List[String]) {
-  def getTaskById(task_id: String): GitlabPipelineParameters = {
+case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
+  private var tasksInOrder = new ListBuffer[ListBuffer[Task]]
+
+  def getTasksInOrder: ListBuffer[ListBuffer[Task]] = {
+    tasksInOrder = new ListBuffer[ListBuffer[Task]]
+    taskIterator(this.orderToExecute)
+    tasksInOrder
+  }
+
+  def getTaskById(task_id: String): Task = {
     tasks.find(gitlabPipelineParameters => gitlabPipelineParameters.id == task_id).
-      getOrElse(throw new NoSuchElementException("Task with %s is not found".format(task_id)))
+      getOrElse(throw new NoSuchElementException("Task with id %s is not found".format(task_id)))
   }
 
-  def print(orderToExecute: List[String]): Unit = {
+  def print: Unit = {
+    var i = 1
+    getTasksInOrder.foreach(tasks => {
+      println("-------------------- " + " Level-" + i + " --------------------")
+      tasks.foreach(task => {
+        printf(task.id + " ")
+      })
+      println()
+      i = i + 1
+    })
+  }
+
+  private def taskIterator(orderToExecute: List[String]): Unit = {
     orderToExecute.foreach(taskIds => {
-      taskIterator(taskIds.split(","))
+      var tasksForCurrentIteration = new ListBuffer[Task]
+      taskIds.split(",").foreach(taskId => {
+        val task = getTaskById(taskId.trim)
+        tasksForCurrentIteration += task
+        if (isOrderToExecuteNotEmpty(task))
+          taskIterator(task.orderToExecute)
+      })
+      tasksInOrder += tasksForCurrentIteration
     })
   }
 
-  private def taskIterator(tasks: Array[String]): Unit = {
-    tasks.foreach(taskId => {
-      val task = getTaskById(taskId.trim)
-      println(task.id)
-      if (isOrderToExecuteNotEmpty(task))
-        print(task.orderToExecute)
-    })
-  }
-
-  private def isOrderToExecuteNotEmpty(task: GitlabPipelineParameters) = {
+  private def isOrderToExecuteNotEmpty(task: Task) = {
     task.orderToExecute != null && task.orderToExecute.nonEmpty
   }
+
 }

@@ -13,7 +13,7 @@ class YamlParserServiceTest extends FunSuite  with BeforeAndAfter {
   }
   test("should able to generate the gitlab pipeline params object for valid yaml string"){
     val sampleYamlString = Helper.getSampleYamlString
-    val gitlabPipelineParametersList = Helper.createGitlabPipelineParametersTestData
+    val gitlabPipelineParametersList = Helper.createTaskTestData
     val orderToExecute = List("task-1", "task-2, task-3", "task-4")
     val taskDescriptor: TaskDescriptor = TaskDescriptor(gitlabPipelineParametersList, orderToExecute)
 

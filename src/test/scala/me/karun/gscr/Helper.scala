@@ -1,19 +1,19 @@
 package me.karun.gscr
 
-import me.karun.gscr.models.GitlabPipelineParameters
+import me.karun.gscr.models.Task
 
 import scala.collection.immutable.Map
 
 object Helper {
-  def createGitlabPipelineParametersTestData: List[GitlabPipelineParameters] = {
-    val gitlabPipelineParameters1: GitlabPipelineParameters = GitlabPipelineParameters("task-1", "marvel", "endgame", "master")
-    val gitlabPipelineParameters2: GitlabPipelineParameters = GitlabPipelineParameters("task-2", "marvel", "infinity war", "master",
+  def createTaskTestData: List[Task] = {
+    val task1: Task = Task("task-1", "marvel", "endgame", "master")
+    val task2: Task = Task("task-2", "marvel", "infinity war", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val gitlabPipelineParameters3: GitlabPipelineParameters = GitlabPipelineParameters("task-3", "DC", "justice league", "master",
+    val task3: Task = Task("task-3", "DC", "justice league", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val gitlabPipelineParameters4: GitlabPipelineParameters = GitlabPipelineParameters("task-4", "marvel", "age of ultron", "master",
+    val task4: Task = Task("task-4", "marvel", "age of ultron", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    List(gitlabPipelineParameters1, gitlabPipelineParameters2, gitlabPipelineParameters3, gitlabPipelineParameters4)
+    List(task1, task2, task3, task4)
   }
 
   def getSampleYamlString: String = {
