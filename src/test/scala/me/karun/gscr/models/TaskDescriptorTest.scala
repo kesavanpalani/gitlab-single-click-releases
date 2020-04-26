@@ -41,21 +41,21 @@ class TaskDescriptorTest extends FunSuite {
   }
 
   test ("get all the tasks in particular order") {
-    val task1: Task = Task("task-1", "marvel", "endgame", "master")
-    val task2: Task = Task("task-2", "marvel", "infinity war", "master",
+    val task1: Task = Task("task-1", "marvel", "endgame", "1231", "master")
+    val task2: Task = Task("task-2", "marvel", "infinity war", "1232", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val task3: Task = Task("task-3", "DC", "justice league", "master",
+    val task3: Task = Task("task-3", "DC", "justice league", "1233", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val task4: Task = Task("task-4", "marvel", "age of ultron", "master",
+    val task4: Task = Task("task-4", "marvel", "age of ultron", "1234", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val task5: Task = Task("task-5", "marvel", "age of ultron", "master",
+    val task5: Task = Task("task-5", "marvel", "age of ultron", "1235", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val task6: Task = Task("task-6", "marvel", "age of ultron", "master",
+    val task6: Task = Task("task-6", "marvel", "age of ultron", "1236", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
-    val task7: Task = Task("task-7", "marvel", "age of ultron", "master",
+    val task7: Task = Task("task-7", "marvel", "age of ultron", "1237", "master",
       Map[String, String]("DB_PASSWORD" -> "1234", "DB_USER_NAME" -> "k7"))
 
-    val subTask1 = Task("subtask-1","","","",null, List("task-2", "task-4, task-5", "task-6"))
+    val subTask1 = Task("subtask-1","","", "", "",null, List("task-2", "task-4, task-5", "task-6"))
     val taskDescriptor = TaskDescriptor(List(task1, task2, task3,task4,task5,task6,task7, subTask1), List("task-1",
       "subtask-1, task-3", "task-7"))
     val expectedOutput = ListBuffer(ListBuffer(task1), ListBuffer(task2), ListBuffer(task4, task5), ListBuffer(task6),

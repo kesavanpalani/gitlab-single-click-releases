@@ -2,6 +2,7 @@ tasks:
   -
     id: task-1
     groupName: marvel
+    projectId: 1234
     projectName: endgame
     runFor: master
 
@@ -9,6 +10,7 @@ tasks:
     id: task-2
     groupName: marvel
     projectName: infinity war
+    projectId: 1235
     runFor: master
     inputVariable:
       DB_PASSWORD: 1234
@@ -17,6 +19,7 @@ tasks:
   -
     id: task-3
     groupName: DC
+    projectId: 1236
     projectName: justice league
     runFor: master
     inputVariable:
@@ -26,6 +29,7 @@ tasks:
   -
     id: task-4
     groupName: marvel
+    projectId: 1237
     projectName: age of ultron
     runFor: master
     inputVariable:

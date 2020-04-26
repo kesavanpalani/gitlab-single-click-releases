@@ -8,7 +8,7 @@ case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
 
   def getTasksInOrder: ListBuffer[ListBuffer[Task]] = {
     tasksInOrder = new ListBuffer[ListBuffer[Task]]
-    taskIterator(this.orderToExecute)
+    arrangeTaskWithRespectToOrderToExecute(this.orderToExecute)
     tasksInOrder
   }
 
@@ -29,14 +29,14 @@ case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
     })
   }
 
-  private def taskIterator(orderToExecute: List[String]): Unit = {
+  private def arrangeTaskWithRespectToOrderToExecute(orderToExecute: List[String]): Unit = {
     orderToExecute.foreach(taskIds => {
       var tasksForCurrentIteration = new ListBuffer[Task]
       taskIds.split(",").foreach(taskId => {
         val task = getTaskById(taskId.trim)
         tasksForCurrentIteration += task
         if (isOrderToExecuteNotEmpty(task))
-          taskIterator(task.orderToExecute)
+          arrangeTaskWithRespectToOrderToExecute(task.orderToExecute)
       })
       tasksInOrder += tasksForCurrentIteration
     })
