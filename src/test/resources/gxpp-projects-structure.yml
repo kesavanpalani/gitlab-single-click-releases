@@ -1,0 +1,25 @@
+tasks:
+  -
+    id: task-1
+    groupName: gxpp
+    projectId: 14821851
+    projectName: project-1
+    runFor: master
+
+  -
+    id: task-2
+    groupName: gxpp
+    projectId: 14821854
+    projectName: project-2
+    runFor: master
+
+  -
+    id: task-3
+    groupName: gxpp
+    projectId: 14821858
+    projectName: project-3
+    runFor: master
+
+orderToExecute:
+  - task-1
+  - task-2, task-3

@@ -1,9 +1,22 @@
 package me.karun.gscr.models
 
 import java.util.NoSuchElementException
+
+import me.karun.gscr.client.GitlabApiClient
+import sttp.client.{HttpURLConnectionBackend, Identity, NothingT, SttpBackend}
+
 import scala.collection.mutable.ListBuffer
 
+//for project in projects:
+//    let pipeTriggersForCurrentTask = api.getPipelineTriggers(project.id)
+//    if isEmpty(pipeTriggersForCurrentTask)
+//        pipelineTriggersForCurrentTask = createTrigger(projectId)
+//    for job in pipelineTriggersForCurrentTask
+//      gitlabPipeLineToken = job.token
+//      triggerPipeline(project.id, gitlabPipeLineToken)
+
 case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
+
   private var tasksInOrder = new ListBuffer[ListBuffer[Task]]
 
   def getTasksInOrder: ListBuffer[ListBuffer[Task]] = {
@@ -17,7 +30,7 @@ case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
       getOrElse(throw new NoSuchElementException("Task with id %s is not found".format(task_id)))
   }
 
-  def print: Unit = {
+  def print(): Unit = {
     var i = 1
     getTasksInOrder.foreach(tasks => {
       println("-------------------- " + " Level-" + i + " --------------------")
@@ -45,5 +58,4 @@ case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
   private def isOrderToExecuteNotEmpty(task: Task) = {
     task.orderToExecute != null && task.orderToExecute.nonEmpty
   }
-
 }
