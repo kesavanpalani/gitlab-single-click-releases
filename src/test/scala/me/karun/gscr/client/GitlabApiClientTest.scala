@@ -69,7 +69,7 @@ class GitlabApiClientTest extends FunSuite with BeforeAndAfter {
   }
 
   test("should trigger the pipeline with given token") {
-    val result = apiClient.triggerPipeline("1", "12")
+    val result = apiClient.triggerPipeline("1", "12", "master")
     assert(result.body.isRight)
     assertResult(expectedPipeline) {
       result.body.getOrElse(throw new Exception("No Pipeline found"))

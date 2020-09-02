@@ -27,9 +27,9 @@ class GitlabApiClient(gitlabUrl: String, gitlabToken: String)
     response
   }
 
-  def triggerPipeline(projectId: String, pipeLineToken: String): Response[Either[ResponseError[Exception], Pipeline]] = {
+  def triggerPipeline(projectId: String, pipeLineToken: String, branch: String): Response[Either[ResponseError[Exception], Pipeline]] = {
     val response = basicRequest
-      .body("token=" + pipeLineToken)
+      .body(Map("token" -> pipeLineToken, "ref" -> branch ))
       .post(uri"$gitlabUrl/api/v4/projects/$projectId/pipelines/")
       .response(asJson[Pipeline])
       .send()
