@@ -29,8 +29,8 @@ class GitlabApiClient(gitlabUrl: String, gitlabToken: String)
 
   def triggerPipeline(projectId: String, pipeLineToken: String, branch: String): Response[Either[ResponseError[Exception], Pipeline]] = {
     val response = basicRequest
-      .body(Map("token" -> pipeLineToken, "ref" -> branch ))
-      .post(uri"$gitlabUrl/api/v4/projects/$projectId/pipelines/")
+      .body(Map("token" -> pipeLineToken, "ref" -> branch))
+      .post(uri"$gitlabUrl/api/v4/projects/$projectId/trigger/pipeline")
       .response(asJson[Pipeline])
       .send()
     response
@@ -39,7 +39,7 @@ class GitlabApiClient(gitlabUrl: String, gitlabToken: String)
   def createTrigger(projectId: String): Response[Either[ResponseError[Exception], PipelineTrigger]] = {
     val response = basicRequest
       .header("PRIVATE-TOKEN", gitlabToken)
-      .body("description=\"gxpp trigger\"")
+      .body(Map("description" -> "gxpp trigger"))
       .post(uri"$gitlabUrl/api/v4/projects/$projectId/triggers")
       .response(asJson[PipelineTrigger])
       .send()

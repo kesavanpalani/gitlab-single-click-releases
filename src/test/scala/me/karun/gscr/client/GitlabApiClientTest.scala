@@ -27,6 +27,7 @@ class GitlabApiClientTest extends FunSuite with BeforeAndAfter {
   implicit val backend: SttpBackendStub[Identity, Nothing] = SttpBackendStub.synchronous
     .whenRequestMatchesPartial({
       case request if request.uri.toString().contains("pipelines")
+        || request.uri.toString().contains("pipeline")
         && (request.headers.exists(header => header.name.equals("PRIVATE-TOKEN") && header.value.length > 0)
         || request.body.toString.contains("token")) => {
         Response.ok(pipelineStatus)
