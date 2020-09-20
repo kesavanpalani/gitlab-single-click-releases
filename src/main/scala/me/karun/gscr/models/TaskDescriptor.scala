@@ -2,18 +2,8 @@ package me.karun.gscr.models
 
 import java.util.NoSuchElementException
 
-import me.karun.gscr.client.GitlabApiClient
-import sttp.client.{HttpURLConnectionBackend, Identity, NothingT, SttpBackend}
 
 import scala.collection.mutable.ListBuffer
-
-//for project in projects:
-//    let pipeTriggersForCurrentTask = api.getPipelineTriggers(project.id)
-//    if isEmpty(pipeTriggersForCurrentTask)
-//        pipelineTriggersForCurrentTask = createTrigger(projectId)
-//    for job in pipelineTriggersForCurrentTask
-//      gitlabPipeLineToken = job.token
-//      triggerPipeline(project.id, gitlabPipeLineToken)
 
 case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
 
@@ -33,7 +23,7 @@ case class TaskDescriptor(tasks: List[Task], orderToExecute: List[String]) {
   def print(): Unit = {
     var i = 1
     getTasksInOrder.foreach(tasks => {
-      println("-------------------- " + " Level-" + i + " --------------------")
+      println("-------------------- " + " Stage-" + i + " --------------------")
       tasks.foreach(task => {
         printf(task.id + " ")
       })
